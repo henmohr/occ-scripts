@@ -48,7 +48,10 @@ https://docs.nextcloud.com/server/latest/admin_manual/configuration_user/instruc
 
   group:adduser                                 add a user to a group
     docker exec -u 33 nextcloud-docker-app-1 php occ group:adduser $GROUP $USER
+
   group:delete                                  Remove a group
+  docker exec -u 33 nextcloud-docker-app-1 php occ group:delete $GROUP
+
   group:info                                    Show information about a group
   group:list                                    list configured groups
   group:removeuser                              remove a user from a group
