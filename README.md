@@ -3,6 +3,16 @@
 Scripts para interagir com o Nextcloud OCC
 
 
+### apps
+
+ app
+  app:disable                                   disable an app
+  app:enable                                    enable an app
+  app:getpath                                   Get an absolute path to the app directory
+  app:install                                   install an app
+  app:list                                      List all available apps
+  app:remove                                    remove an app
+  app:update                                    update an app or all apps
 
 
 ### Usuarios
@@ -24,14 +34,9 @@ Scripts para interagir com o Nextcloud OCC
   user:setting                                  Read and modify user settings
   user:sync-account-data                        sync user backend data to accounts table for configured users
 
-### Admin delegation
+                  show delegated settings
 
- admin-delegation
-  admin-delegation:add                          add setting delegation to a group
-  admin-delegation:remove                       remove settings delegation from a group
-  admin-delegation:show                         show delegated settings
-
-### Subadmin
+### Subgroup admin
 
 https://docs.nextcloud.com/server/latest/admin_manual/configuration_user/instruction_set_for_users.html#promote-user-to-subadmin
 
@@ -59,7 +64,17 @@ https://docs.nextcloud.com/server/latest/admin_manual/configuration_user/instruc
 
  groupquota
   groupquota:delete                             Delete the configured quota for a group
+    docker exec -u 33 nextcloud-docker-app-1 php occ groupquota:delete $GROUP_ID $GROUP_QUOTA
+
   groupquota:get                                Get the configured quota for a group
+    docker exec -u 33 nextcloud-docker-app-1 php occ groupquota:get $GROUP_ID
+
   groupquota:list                               Lists all configured quotas
+      docker exec -u 33 nextcloud-docker-app-1 php occ groupquota:list
+
   groupquota:set                                Set the configured quota for a group
+    docker exec -u 33 nextcloud-docker-app-1 php occ groupquota:set $GROUP_ID $GROUP_QUOTA
+
   groupquota:used                               Get the used quota for a group
+    docker exec -u 33 nextcloud-docker-app-1 php occ groupquota:used --format $GROUP_ID
+
