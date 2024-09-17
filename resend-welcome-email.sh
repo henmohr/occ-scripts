@@ -19,6 +19,6 @@ ADMIN=$1
 PASS=$2
 URL=$3
 EMAIL=$4
-GROUP=$5
+
 
 curl -X POST https://$ADMIN:$PASS@$URL/ocs/v1.php/cloud/users/$EMAIL/welcome -H "OCS-APIRequest: true"

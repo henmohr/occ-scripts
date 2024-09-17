@@ -21,6 +21,6 @@ ADMIN=$1
 PASS=$2
 URL=$3
 EMAIL=$4
-GROUP=$5
+
 
 curl -X GET https://$ADMIN:$PASS@$URL/ocs/v1.php/cloud/users/$EMAIL/subadmins -H "OCS-APIRequest: true"
