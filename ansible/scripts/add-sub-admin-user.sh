@@ -23,6 +23,6 @@ ADMIN=$1
 PASS=$2
 URL=$3
 EMAIL=$4
-GROUP=$5
+GROUP=$4
 
 curl -X POST https://$ADMIN:$PASS@$URL/ocs/v1.php/cloud/users/$EMAIL/subadmins -d groupid="$GROUP" -H "OCS-APIRequest: true"

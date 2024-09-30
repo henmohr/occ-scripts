@@ -5,9 +5,14 @@
 
 GROUP_ID=$1
 GROUP_QUOTA=$2
+UNIT=$3
 
+if [[ "$UNIT" != "MB" && "$UNIT" != "GB" ]]; then
+  echo "Erro: Unidade inválida. Use 'MB' ou 'GB'."
+  exit 1
+fi
 
-docker exec -u 33 nextcloud-docker-app-1 php occ groupquota:set $GROUP_ID $GROUP_QUOTA
+docker exec -u 33 nextcloud-docker-app-1 php occ groupquota:set $GROUP_ID $GROUP_QUOTA$UNIT
 
 
 # Retorna código 100 mas não altera

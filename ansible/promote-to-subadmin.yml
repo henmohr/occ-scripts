@@ -1,0 +1,12 @@
+- name: Promove usuario a admin de grupo
+  hosts: nextcloud
+  become: yes
+  tasks:
+    - name: Promovendo usuario
+      script: ./scripts/add-sub-admin-user.sh {{ admin }} {{ pass }} {{ url }} {{ email }} "{{ email }}"
+      register: script_output
+
+    - name: Show script output
+      debug:
+        var: script_output.stdout
+

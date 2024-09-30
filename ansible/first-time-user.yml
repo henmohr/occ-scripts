@@ -1,22 +1,10 @@
-- name: Cria usuario, define quot
+- name: Cria usuario
   hosts: nextcloud
   become: yes
-  tasks:
-  vars_prompt:
-    - name: email
-      prompt: "Enter the user's email"
-      private: no
-
-    - name: display_name
-      prompt: "Enter the user's display name"
-      private: no
 
   tasks:
     - name: Adiciona usuário do Nextcloud via docker exec
-      command: >
-        docker exec -u 33 nextcloud-docker-app-1 php occ user:add
-        --generate-password --email {{ email }} --group {{ email }}
-        --display-name "{{ display_name }}" {{ email }}
+      script: ./scripts/add-user.sh {{ display_name }} {{ email }}
       register: add_user_output
 
     - name: Show output from user addition

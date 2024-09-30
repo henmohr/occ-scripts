@@ -2,20 +2,8 @@
   hosts: nextcloud
   become: yes
   tasks:
-  vars_prompt:
-    - name: email
-      prompt: "E-mail do usuário a ser definido a quota"
-      private: no
-
-    - name: group_quota
-      prompt: "Insira a quota a ser definida para o usuario (em GB)"
-      private: no
-
-  tasks:
     - name: Define quota para usuário do Nextcloud via docker exec
-      command: >
-        docker exec -u 33 nextcloud-docker-app-1 php occ groupquota:set {{ email }} {{ group_quota }}GB
-      
+      script: ./scripts/set-group-quota.sh {{ email }} {{ quota }}GB
       register: set_quota_output
 
     - name: Quota output
